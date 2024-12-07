@@ -1,0 +1,6 @@
+@PriceChecker.API_HostAddress = http://localhost:5087
+
+GET {{PriceChecker.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
