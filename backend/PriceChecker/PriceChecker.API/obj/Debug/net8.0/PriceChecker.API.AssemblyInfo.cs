@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PriceChecker.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1e57d0d8e99c13cf282db3c10f7fee79efbf8d29")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d2ce0f1ba0ad9bdf80a278b4ffc16e8e82cffd71")]
 [assembly: System.Reflection.AssemblyProductAttribute("PriceChecker.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PriceChecker.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
