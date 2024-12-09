@@ -13,6 +13,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<ISiteScraper, MediaMarktScraper>();
         services.AddScoped<ISiteScraper, MediaExpertScraper>();
         services.AddScoped<ISiteScraper, XKomScraper>();
+        services.AddScoped<ISiteScraper, KomputronikScraper>();
 
         services.AddScoped<CoreScraperService>();
 
