@@ -11,6 +11,8 @@ public static class ServiceCollectionExtensions
         services.AddHttpClient();
 
         services.AddScoped<ISiteScraper, MediaMarktScraper>();
+        services.AddScoped<ISiteScraper, MediaExpertScraper>();
+        services.AddScoped<ISiteScraper, XKomScraper>();
 
         services.AddScoped<CoreScraperService>();
 
