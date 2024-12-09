@@ -16,14 +16,21 @@ public class MediaMarktScraper(HttpClient httpClient) : BaseScraper(httpClient),
     public async Task<List<Product>> ScrapeProductsAsync(string searchTerm)
     {
         var searchUrl = GetSearchUrl(searchTerm);
-        var html = await FetchHtmlAsync(searchUrl);
+        var html = await FetchHtmlAsync(searchUrl, "https://www.mediamarkt.pl");
 
         var htmlDoc = new HtmlDocument();
         htmlDoc.LoadHtml(html);
         
-        
+        var productNodes = htmlDoc.DocumentNode.SelectNodes(
+            "//div[contains(@class, 'sc-b0a2f165-0 hJZrCI sc-597dbd60-3 bWVAEq sc-3edc7bb3-2 fdepEN')]");
+
+        if (productNodes == null || !productNodes.Any())
+        {
+            Console.WriteLine("No product nodes found on the MediaMarkt.");
+            return new List<Product>(); 
+        }
         return ParseProductNodes(
-            htmlDoc,
+            productNodes,
             SiteName,
             "https://www.mediamarkt.pl",
             ".//p[contains(@class, 'sc-8b815c14-0 dbwSez')]",
