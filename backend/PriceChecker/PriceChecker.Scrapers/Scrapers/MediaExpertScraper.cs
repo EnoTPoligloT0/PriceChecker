@@ -39,13 +39,10 @@ public class MediaExpertScraper : BaseScraper, ISiteScraper
         {
             Console.WriteLine("No product nodes found. Debugging HTML...");
            
-            File.WriteAllText("debug.html", html);
             return new List<Product>();
         }
         
-        
         Console.WriteLine($"Found {productNodes.Count} product nodes.");
-        File.WriteAllText("nodes.html", productNodes.ToString());
     
         return ParseProductNodes(
             productNodes,
