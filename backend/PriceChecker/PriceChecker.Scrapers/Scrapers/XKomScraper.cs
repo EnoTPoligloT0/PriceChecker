@@ -16,30 +16,37 @@ public class XKomScraper(HttpClient httpClient) : BaseScraper(httpClient), ISite
 
     public async Task<List<Product>> ScrapeProductsAsync(string searchTerm)
     {
-        var searchUrl = GetSearchUrl(searchTerm);
-        var html = await FetchHtmlAsync(searchUrl, "https://www.x-kom.pl");
-        
-        Console.WriteLine(searchUrl);
-        var htmlDoc = new HtmlDocument();
-        htmlDoc.LoadHtml(html);
-
-        var productNodes = htmlDoc.DocumentNode.SelectNodes(
-            "//div[contains(@class, 'parts__LinkWithoutAnchorWrapper-sc-f5aee401-0')]");
-    
-        if (productNodes == null || !productNodes.Any())
+        try
         {
-            
-            Console.WriteLine("No product nodes found on the x-kom.");
-            return new List<Product>();
-        }
+            var searchUrl = GetSearchUrl(searchTerm);
+            var html = await FetchHtmlAsync(searchUrl, "https://www.x-kom.pl");
+        
+            Console.WriteLine(searchUrl);
+            var htmlDoc = new HtmlDocument();
+            htmlDoc.LoadHtml(html);
 
-        return ParseProductNodes(
-            productNodes,
-            SiteName,
-            "https://www.x-kom.pl",
-            ".//h3[contains(@class, 'parts__Title-sc-1d28d-0')]",
-            ".//span[contains(@class, 'parts__Price-sc-6e255ce0-0')]",
-            ".//a[contains(@class, 'parts__StyledLink-sc-4e18e67b-0')]/@href"
-        );
+            var productNodes = htmlDoc.DocumentNode.SelectNodes(
+                "//div[contains(@class, 'parts__LinkWithoutAnchorWrapper-sc-f5aee401-0')]");
+
+            if (productNodes == null || !productNodes.Any())
+            {
+                Console.WriteLine($"No product nodes found on the {SiteName}.");
+                return new List<Product>();
+            }
+
+            return ParseProductNodes(
+                productNodes,
+                SiteName,
+                "https://www.x-kom.pl",
+                ".//h3[contains(@class, 'parts__Title-sc-1d28d-0')]",
+                ".//span[contains(@class, 'parts__Price-sc-6e255ce0-0')]",
+                ".//a[contains(@class, 'parts__StyledLink-sc-4e18e67b-0')]/@href"
+            );
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error scraping {SiteName}: {ex.Message}");
+            return new List<Product>(); 
+        }
     }
 }
