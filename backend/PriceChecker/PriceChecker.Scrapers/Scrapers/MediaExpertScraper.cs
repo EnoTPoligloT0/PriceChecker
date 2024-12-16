@@ -4,11 +4,9 @@ using PriceChecker.Domain.Models;
 
 namespace PriceChecker.Scrapers.Scrapers;
 
-public class MediaExpertScraper : BaseScraper, ISiteScraper
+public class MediaExpertScraper(HttpClient httpClient) : BaseScraper(httpClient), ISiteScraper
 {
     public string SiteName => "Media Expert";
-
-    public MediaExpertScraper(HttpClient httpClient) : base(httpClient) { }
 
     public override string GetSearchUrl(string searchTerm)
     {
