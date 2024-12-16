@@ -65,14 +65,8 @@ public abstract class BaseScraper
             Console.WriteLine(url);
             if (!string.IsNullOrEmpty(name) && price > 0)
             {
-                products.Add(new Product
-                {
-                    ProductName = name,
-                    Price = price,
-                    Url = $"{urlPrefix}{url}",
-                    SiteName = siteName
-                });
-                Console.WriteLine($"Product: {name}, Price: {price}, URL: {url}, SiteName: {siteName}");
+                products.Add(Product.Create(name, price, $"{urlPrefix}{url}", siteName));
+                Console.WriteLine(Product.Create(name, price, $"{urlPrefix}{url}", siteName));
             }
         }
 
