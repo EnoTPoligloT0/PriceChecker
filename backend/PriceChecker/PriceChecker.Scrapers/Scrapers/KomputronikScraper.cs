@@ -15,29 +15,38 @@ public class KomputronikScraper(HttpClient httpClient) : BaseScraper(httpClient)
 
     public async Task<List<Product>> ScrapeProductsAsync(string searchTerm)
     {
-        var searchUrl = GetSearchUrl(searchTerm);
-        var html = await FetchHtmlAsync(searchUrl, "https://www.komputronik.pl");
-        await File.WriteAllTextAsync("debugKomputronik.html", html );
-        var htmlDoc = new HtmlDocument();
-        htmlDoc.LoadHtml(html);
-        
-        var productNodes = htmlDoc.DocumentNode.SelectNodes(
-            "//div[@data-name='listingTile']");
-
-        Console.WriteLine($"Found {productNodes.Count} products in Komputronik");
-        if (productNodes == null || !productNodes.Any())
+        try
         {
-            Console.WriteLine("No product nodes found on the Komputronik.");
+            var searchUrl = GetSearchUrl(searchTerm);
+            var html = await FetchHtmlAsync(searchUrl, "https://www.komputronik.pl");
+            await File.WriteAllTextAsync("debugKomputronik.html", html );
+            var htmlDoc = new HtmlDocument();
+            htmlDoc.LoadHtml(html);
+        
+            var productNodes = htmlDoc.DocumentNode.SelectNodes(
+                "//div[@data-name='listingTile']");
+
+            Console.WriteLine($"Found {productNodes.Count} products in Komputronik");
+            if (productNodes == null || !productNodes.Any())
+            {
+                Console.WriteLine("No product nodes found on the Komputronik.");
+                return new List<Product>(); 
+            }
+
+            return ParseProductNodes(
+                productNodes,
+                SiteName,
+                "https://www.komputronik.pl",
+                ".//h2[@class='line-clamp-3 font-headline text-lg font-bold leading-6 md:text-xl md:leading-8']",
+                ".//div[@data-price-type='final']",
+                ".//div[@class='md:col-span-2']//a[@href]/@href",
+                false
+            );
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error scraping {SiteName}: {ex.Message}");
             return new List<Product>(); 
         }
-        return ParseProductNodes(
-            productNodes,
-            SiteName,
-            "https://www.komputronik.pl",
-            ".//h2[@class='line-clamp-3 font-headline text-lg font-bold leading-6 md:text-xl md:leading-8']",
-            ".//div[@data-name='listingPrice']//div[@class='flex-col mt-2 inline-flex flex-wrap']//div[@data-price-type='final']/text()",
-            ".//div[@class='md:col-span-2']//a[@href]/@href",
-            false
-        );
     }
 }
