@@ -22,7 +22,7 @@ public class MediaMarktScraper(HttpClient httpClient) : BaseScraper(httpClient),
         htmlDoc.LoadHtml(html);
         
         var productNodes = htmlDoc.DocumentNode.SelectNodes(
-            "//div[contains(@class, 'sc-b0a2f165-0 hJZrCI sc-597dbd60-3 bWVAEq sc-3edc7bb3-2 fdepEN')]");
+            "//div[contains(@data-test, 'mms-product-card')]");
 
         if (productNodes == null || !productNodes.Any())
         {
