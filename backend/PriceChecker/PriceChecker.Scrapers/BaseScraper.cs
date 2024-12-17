@@ -5,6 +5,7 @@ namespace PriceChecker.Scrapers;
 
 public abstract class BaseScraper
 {
+    
     private readonly HttpClient _httpClient;
 
     public BaseScraper(HttpClient httpClient)
@@ -30,7 +31,7 @@ public abstract class BaseScraper
     }
 
     protected List<Product> ParseProductNodes(HtmlNodeCollection productNodes, string siteName, string urlPrefix, string nameXpath,
-        string priceXpath, string linkXpath, bool formatPrice = true)
+        string priceXpath, string imageUrl, string linkXpath, bool formatPrice = true)
     {
         
         var products = new List<Product>();
@@ -65,8 +66,8 @@ public abstract class BaseScraper
             Console.WriteLine(url);
             if (!string.IsNullOrEmpty(name) && price > 0)
             {
-                products.Add(Product.Create(name, price, $"{urlPrefix}{url}", siteName));
-                Console.WriteLine(Product.Create(name, price, $"{urlPrefix}{url}", siteName));
+                products.Add(Product.Create(name, price, imageUrl, $"{urlPrefix}{url}", siteName));
+                Console.WriteLine(Product.Create(name, price, imageUrl, $"{urlPrefix}{url}", siteName));
             }
         }
 
