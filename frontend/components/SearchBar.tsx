@@ -1,41 +1,104 @@
+import {FiSearch} from "react-icons/fi"; // Search Icon
+import {FiSend} from "react-icons/fi"; // Send Icon
+import {motion} from "framer-motion";
 
 const SearchBar = () => {
     return (
-        <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-b from-black to-purple-900 text-white px-4">
-            <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">
-                Search with <span className="text-pink-500">Seamless Power</span>
-                <span className="ml-1 text-pink-400">✨</span>
-            </h1>
+        <div
+            className="flex flex-col items-center justify-center h-screen bg-gradient-to-b from-black to-purple-900 text-white px-4 relative overflow-hidden">
+            {/* Floating Gradient Background Effect */}
+            <motion.div
+                className="absolute inset-0 pointer-events-none"
+                initial={{opacity: 0}}
+                animate={{opacity: 0.6}}
+                transition={{duration: 3, repeat: Infinity, repeatType: "reverse"}}
+                style={{
+                    background:
+                        "radial-gradient(circle, rgba(128,0,255,0.4) 0%, rgba(0,0,0,0) 60%)",
+                }}
+            />
 
-            <div className="relative w-full max-w-md">
-                <input
-                    type="text"
-                    placeholder="Ask a question"
-                    className="w-full bg-black text-white placeholder-gray-400 rounded-full py-3 px-5 pl-12 text-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
-                />
-                <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-                </div>
+            <motion.h1
+                className="text-4xl md:text-5xl font-bold text-center mb-8 relative z-10"
+                initial={{y: -50, opacity: 0}}
+                animate={{y: 0, opacity: 1}}
+                transition={{duration: 1}}>
+                Welcome to <span className="text-pink-500">Price Checker</span>
+                <motion.span
+                    className="ml-1 text-pink-400"
+                    initial={{scale: 0}}
+                    animate={{scale: 1.2}}
+                    transition={{
+                        duration: 0.8,
+                        repeat: Infinity,
+                        repeatType: "mirror",
+                        ease: "easeInOut",
+                    }}>
+                    ✨
+                </motion.span>
+            </motion.h1>
 
-                <button
-                    type="submit"
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-pink-500 hover:bg-pink-600 text-white rounded-full p-3 shadow-lg"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth="2"
-                        stroke="currentColor"
-                        className="w-6 h-6"
+            <motion.div
+                className="relative w-full max-w-md"
+                initial={{opacity: 0}}
+                animate={{opacity: 1}}
+                transition={{duration: 1, delay: 0.5}}>
+                <div className="relative">
+                    <input
+                        type="text"
+                        placeholder="Search for the best prices..."
+                        className="w-full bg-gradient-to-r from-gray-900 via-purple-900 to-black text-white placeholder-gray-400 rounded-full py-4 pl-12 pr-16 text-lg shadow-md focus:outline-none focus:ring-2 focus:ring-pink-500"
+                    />
+
+                    <motion.div
+                        className="absolute inset-y-0 left-4 flex items-center"
+                        initial={{scale: 0}}
+                        animate={{scale: 1}}
+                        transition={{duration: 0.5, delay: 0.7}}
                     >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M4.5 12.75l6 6 9-13.5"
-                        />
-                    </svg>
-                </button>
-            </div>
+                        <FiSearch className="w-6 h-6 text-pink-400"/>
+                    </motion.div>
+
+                    <motion.button
+                        type="submit"
+                        className="absolute right-1.5 top-1.5 transform -translate-y-1/2 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white rounded-full w-12 h-12 shadow-xl transition-all duration-300 flex items-center justify-center z-10"
+                        initial={{x: 50, opacity: 0}}
+                        animate={{x: 0, opacity: 1}}
+                        whileHover={{scale: 1.2}}
+                        whileTap={{scale: 0.9}}
+                        transition={{duration: 0.5, delay: 0.8}}
+                    >
+                        <FiSend className="w-5 h-5"/>
+                    </motion.button>
+                </div>
+            </motion.div>
+
+
+            {/* Decorative Elements */}
+            <motion.div
+                className="absolute w-64 h-64 bg-pink-500 rounded-full filter blur-3xl opacity-50 z-0"
+                initial={{scale: 0, opacity: 0}}
+                animate={{scale: 1.2, opacity: 0.6}}
+                transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    ease: "easeInOut",
+                }}
+                style={{top: "10%", left: "5%"}}
+            ></motion.div>
+            <motion.div
+                className="absolute w-96 h-96 bg-purple-500 rounded-full filter blur-3xl opacity-50 z-0"
+                initial={{scale: 0, opacity: 0}}
+                animate={{scale: 1.5, opacity: 0.5}}
+                transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    ease: "easeInOut",
+                }}
+                style={{bottom: "15%", right: "10%"}}
+            ></motion.div>
         </div>
     );
 };
