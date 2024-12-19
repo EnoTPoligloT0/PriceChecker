@@ -1,11 +1,16 @@
-import SearchBar from "../components/SearchBar.tsx";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import SearchBar from "./components/SearchBar.tsx";
 import './index.css'
+import SearchResults from "./pages/SearchResults.tsx";
 function App() {
 
   return (
-    <>
-      <SearchBar/>
-    </>
+      <Router>
+          <Routes>
+              <Route path="/" element={<SearchBar />} />
+              <Route path="/search" element={<SearchResults />} />
+          </Routes>
+      </Router>
   )
 }
 
