@@ -25,12 +25,12 @@ const SearchBar = () => {
                     background: "radial-gradient(circle, rgba(128,0,255,0.4) 0%, rgba(0,0,0,0) 60%)",
                 }}
             />
+
             <motion.h1
                 className="text-4xl md:text-5xl font-bold text-center mb-8 relative z-10"
                 initial={{ y: -50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 1 }}
-            >
+                transition={{ duration: 1 }}>
                 Welcome to <span className="text-pink-500">Price Checker</span>
                 <motion.span
                     className="ml-1 text-pink-400"
@@ -51,8 +51,7 @@ const SearchBar = () => {
                 className="relative w-full max-w-md"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 1, delay: 0.5 }}
-            >
+                transition={{ duration: 1, delay: 0.5 }}>
                 <div className="relative">
                     <input
                         type="text"
@@ -66,8 +65,7 @@ const SearchBar = () => {
                         className="absolute inset-y-0 left-4 flex items-center"
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        transition={{ duration: 0.5, delay: 0.7 }}
-                    >
+                        transition={{ duration: 0.5, delay: 0.7 }}>
                         <FiSearch className="w-6 h-6 text-pink-400" />
                     </motion.div>
 
@@ -78,12 +76,37 @@ const SearchBar = () => {
                         animate={{ x: 0, opacity: 1 }}
                         whileHover={{ scale: 1.2 }}
                         whileTap={{ scale: 0.9 }}
-                        transition={{ duration: 0.5, delay: 0.8 }}
-                    >
+                        transition={{ duration: 0.5, delay: 0.8 }}>
                         <FiSend className="w-5 h-5" />
                     </motion.button>
                 </div>
             </motion.div>
+
+            {/* Decorative Elements */}
+            <motion.div
+                className="absolute w-64 h-64 bg-pink-500 rounded-full filter blur-3xl opacity-50 z-0"
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1.2, opacity: 0.6 }}
+                transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    ease: "easeInOut",
+                }}
+                style={{ top: "10%", left: "5%" }}
+            ></motion.div>
+            <motion.div
+                className="absolute w-96 h-96 bg-purple-500 rounded-full filter blur-3xl opacity-50 z-0"
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1.5, opacity: 0.5 }}
+                transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    ease: "easeInOut",
+                }}
+                style={{ bottom: "15%", right: "10%" }}
+            ></motion.div>
         </div>
     );
 };
