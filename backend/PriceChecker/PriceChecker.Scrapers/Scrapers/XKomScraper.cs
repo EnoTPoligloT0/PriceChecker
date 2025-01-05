@@ -40,6 +40,7 @@ public class XKomScraper(HttpClient httpClient) : BaseScraper(httpClient), ISite
                 "https://www.x-kom.pl",
                 ".//h3[contains(@class, 'parts__Title-sc-1d28d-0')]",
                 ".//span[contains(@class, 'parts__Price-sc-6e255ce0-0')]",
+                "//span[contains(@class, 'parts__Base-sc-563da1c5-0 parts__Wrapper-sc-563da1c5-2 dDauxD hjaSdm parts__ProductImage-sc-d5832e95-7 jqDZJu')]/img/@src",
                 ".//a[contains(@class, 'parts__StyledLink-sc-4e18e67b-0')]/@href"
             );
         }

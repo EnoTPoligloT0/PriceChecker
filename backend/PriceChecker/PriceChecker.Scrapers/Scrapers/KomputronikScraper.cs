@@ -39,6 +39,7 @@ public class KomputronikScraper(HttpClient httpClient) : BaseScraper(httpClient)
                 "https://www.komputronik.pl",
                 ".//h2[@class='line-clamp-3 font-headline text-lg font-bold leading-6 md:text-xl md:leading-8']",
                 ".//div[@data-price-type='final']",
+                ".//a[contains(@class, 'grid') and contains(@class, 'h-[17.625rem]') and contains(@class, 'place-items-center')]/img/@src",
                 ".//div[@class='md:col-span-2']//a[@href]/@href",
                 false
             );
