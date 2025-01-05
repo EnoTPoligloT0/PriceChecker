@@ -48,6 +48,7 @@ public class MediaExpertScraper(HttpClient httpClient) : BaseScraper(httpClient)
             "https://www.mediaexpert.pl",
             ".//a[contains(@class, 'is-animate ui-link')]",
             ".//span[contains(@class, 'whole')]",
+            ".//div[contains(@class, 'spark-image item picture-image')]/img/@src",
             ".//a[contains(@class, 'is-animate ui-link')]/@href",
             false
         );

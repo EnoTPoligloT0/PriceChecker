@@ -35,6 +35,7 @@ public class MediaMarktScraper(HttpClient httpClient) : BaseScraper(httpClient),
             "https://www.mediamarkt.pl",
             ".//p[contains(@class, 'sc-8b815c14-0 dbwSez')]",
             ".//span[contains(@class, 'sc-e0c7d9f7-0 bPkjPs')]",
+            ".//picture[@data-test='product-image']/img/@src",
             ".//a[contains(@class, 'sc-2fa46f1d-1 hHoKle')]/@href"
         );
     }
